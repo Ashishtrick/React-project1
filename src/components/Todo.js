@@ -16,6 +16,18 @@ const Todo = ({text,todo,todos,setTodos}) => {
         }))
     };
 
+
+    const updateHandler = () => {
+        setTodos(todos.map((item) => {
+            if (item.id === todo.id) {
+                return {
+                    ...item, text: prompt("Enter new text")
+                };
+            }
+            return item;
+        }))
+    };
+
     return (
         <div className="todo">
             <li className={`todo-item ${todo.completed ? "completed" : ''}`}>{text}</li>
@@ -24,6 +36,9 @@ const Todo = ({text,todo,todos,setTodos}) => {
             </button>
             <button onClick={deleteHandler} className="trash-btn">
                 <i className="fas fa-trash"></i>
+            </button>
+            <button onClick={updateHandler} className='edit-btn'>
+                <i className="fas fa-edit"></i>
             </button>
         </div>
     );
